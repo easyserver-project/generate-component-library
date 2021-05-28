@@ -23,6 +23,8 @@
     "generate": "node ./src/generate.js ./example",
     "vite": "vite",
     "start": "run-p \"vite\" \"dev\"",
-    "dev": "nodemon --watch example/stories -e tsx src/generate.js ./example index"
+    "dev": "nodemon --watch example/stories -e tsx src/generate.js ./example index",
+    "build": "yarn generate generate && yarn generate index && vite build && yarn generate restore",
+    "setup": "yarn generate generate && yarn generate restore"
   }
 }

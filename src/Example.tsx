@@ -8,13 +8,10 @@ export const Example = ({
   code?: string
 }) => {
   return (
-    <div className="example-root">
-      <div style={{ border: '1px solid #65656C', padding: '1rem' }}>{children}</div>
-      <p />
+    <div>
+      <div>{children}</div>
       <details title={'Show code'}>
-        <div style={{ backgroundColor: '#f6f6f6', padding: '1rem' }}>
-          <code style={{ whiteSpace: 'pre', color: '#212529' }}>{code}</code>
-        </div>
+        <code>{code}</code>
       </details>
     </div>
   )
