@@ -4,13 +4,21 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^16.3.1",
     "@vercel/ncc": "^0.28.6",
     "ts-node": "^10.1.0",
-    "typescript": "^4.3.2",
-    "@types/node": "^16.3.1"
+    "typescript": "^4.3.2"
   },
   "scripts": {
     "gcl": "ts-node src/gcl.ts ./example",
     "build": "tsc && ncc build ./build/src/gcl.js -o dist"
+  },
+  "dependencies": {
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.1.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0"
   }
 }
