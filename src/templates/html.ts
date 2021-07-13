@@ -1,4 +1,4 @@
-<html lang='en'>
+export const HtmlTemplate = `<html lang='en'>
 <head>
   <meta charset='UTF-8' />
   <title>React component library</title>
@@ -7,6 +7,7 @@
 </head>
 <body>
 <div id='app'></div>
-<script type='module' src='/src/main.tsx'></script>
+<script type='module' src='/main.tsx'></script>
 </body>
 </html>
+`

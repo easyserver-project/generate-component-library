@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react'
-import * as stories from './stories'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
-import { Nav } from './Nav'
+import { Nav } from './components/Nav'
+
+const stories = {} // Template, DO NOT CHANGE!
 
 const IndexPage = () => <div>Index</div>
 
@@ -34,3 +35,4 @@ export const App = () => {
     </>
   )
 }
+

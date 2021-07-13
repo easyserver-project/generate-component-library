@@ -1,8 +1,10 @@
+#!/usr/bin/env node
 const fs = require('fs')
 const path = require('path')
 
 const root = process.argv[2]
-const storiesRoot = path.join(root, 'stories')
+const src = path.join(root, "src")
+const storiesRoot = path.join(src, 'stories')
 
 const generate = process.argv[3] === 'generate' || !process.argv[3]
 const restore = process.argv[3] === 'restore' || !process.argv[3]
@@ -11,9 +13,9 @@ const index = process.argv[3] === 'index' || !process.argv[3]
 if (generate) {
   const stories = fs.readdirSync(storiesRoot).filter((f) => f.endsWith('Story.tsx'))
   const copyfile = (file) => {
-    if (!fs.existsSync(path.join(root, file)))
+    if (!fs.existsSync(path.join(src, file)))
       fs.writeFileSync(
-        path.join(root, file),
+        path.join(src, file),
         fs.readFileSync(path.join(__dirname, file), 'utf8'),
         'utf8'
       )
@@ -57,3 +59,10 @@ if (index) {
     .join('\n')}`
   fs.writeFileSync(path.join(storiesRoot, 'index.ts'), storyIndexCode, 'utf8')
 }
+
+if (!fs.existsSync(path.join(root, 'index.html')))
+  fs.writeFileSync(
+      path.join(root, 'index.html'),
+      fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8'),
+      'utf8'
+  )

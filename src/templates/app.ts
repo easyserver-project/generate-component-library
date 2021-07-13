@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react'
-import * as stories from './stories'
+export const AppTemplate = `import React, { ReactElement } from 'react'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
-import { Nav } from './Nav'
+import { Nav } from './components/Nav'
+import * as stories from './stories'
 
 const IndexPage = () => <div>Index</div>
 
@@ -13,7 +13,7 @@ export const App = () => {
         {[
           <a href={'#'}>Index</a>,
           ...storyKeys.map((key) => (
-            <a key={key} href={`#/${key}`}>
+            <a key={key} href={\`#/$\{key\}\`}>
               {key}
             </a>
           )),
@@ -24,7 +24,7 @@ export const App = () => {
           {storyKeys.map((key) => (
             <Route
               key={key}
-              path={`/${key}`}
+              path={\`/$\{key\}\`}
               component={(stories as { [index: string]: () => ReactElement })[key]}
             />
           ))}
@@ -34,3 +34,5 @@ export const App = () => {
     </>
   )
 }
+
+`
