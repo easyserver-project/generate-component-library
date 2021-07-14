@@ -1,49 +1,20 @@
-import {AppTemplate} from './templates/app'
-import {NavTemplate} from './templates/nav'
-import {ExampleTemplate} from './templates/example'
 import {MainTemplate} from './templates/main'
-import {HtmlTemplate} from './templates/html'
 import fs from 'fs'
 import path from 'path'
-import {StoryTemplate} from "./templates/story";
-import {TsConfigTemplate} from "./templates/tsconfig";
+import {createDirs, createMissingStories, getDirectories} from "./util";
 
 export const generateDist = (rootDir: string) => {
-    const distDir = path.join(rootDir, 'dist')
-    const srcDir = path.join(rootDir, 'src')
-    const componentsDir = path.join(srcDir, 'components')
-    const storiesDir = path.join(srcDir, 'stories')
-    const distStoriesDir = path.join(distDir, 'stories')
-    const distComponentsDir = path.join(distDir, 'components')
-    const styleDir = path.join(srcDir, 'style')
-    const distStyleDir = path.join(distDir, 'style')
-
-    const createDir = (dir: string) => {
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir)
-        }
-    }
-    createDir(srcDir)
-    createDir(componentsDir)
-    createDir(styleDir)
-    createDir(storiesDir)
-    createDir(distDir)
-    createDir(distStoriesDir)
-    createDir(distComponentsDir)
-    createDir(distStyleDir)
-
-    const copyFileIfNotExists = (file: string, template: string) => {
-        if (!fs.existsSync(path.join(srcDir, file)))
-            fs.writeFileSync(path.join(srcDir, file), template, 'utf8')
-    }
-
-    copyFileIfNotExists('App.tsx', AppTemplate)
-    copyFileIfNotExists('./components/Nav.tsx', NavTemplate)
-    copyFileIfNotExists('Example.tsx', ExampleTemplate)
-    copyFileIfNotExists('index.html', HtmlTemplate)
-    copyFileIfNotExists('../tsconfig.json', TsConfigTemplate)
-    if (!fs.existsSync(path.join(srcDir, "index.html")))
-        fs.writeFileSync(path.join(srcDir, "style", "index.scss"), "", 'utf8')
+    const {
+        distDir,
+        distStyleDir,
+        distStoriesDir,
+        distComponentsDir,
+        componentsDir,
+        storiesDir,
+        styleDir,
+        srcDir
+    } = getDirectories(rootDir)
+    createDirs(rootDir)
 
     const copyFileToDist = (file: string, replace?: { from: string; to: string }) => {
         const fileContent: string = fs.readFileSync(path.join(srcDir, file), 'utf8')
@@ -87,11 +58,7 @@ export const generateDist = (rootDir: string) => {
     fs.readdirSync(styleDir).forEach((c: string) => copyFileToDist(path.join('style', c)))
     fs.writeFileSync(path.join(distDir, 'main.tsx'), MainTemplate, 'utf8')
 
-    fs.readdirSync(componentsDir).filter((f: string) => f.endsWith('.tsx')).forEach(c => {
-        const name = c.replace(".tsx","")
-        if (!fs.existsSync(path.join(storiesDir, `${name}Story.tsx`)))
-            fs.writeFileSync(path.join(storiesDir, `${name}Story.tsx`), StoryTemplate(name), "utf8")
-    })
+    createMissingStories(rootDir)
 }
 
 

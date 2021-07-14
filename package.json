@@ -9,7 +9,9 @@
     "ts-node": "^10.1.0"
   },
   "scripts": {
-    "start": "ts-node src/index.ts ./example",
+    "start": "ts-node src/index.ts start ./example",
+    "build-example": "ts-node src/index.ts build ./example",
+    "gcl-init": "ts-node src/index.ts init ./example",
     "build": "tsc -p tsconfig-build.json && copyfiles package.json .npmrc build"
   },
   "dependencies": {
