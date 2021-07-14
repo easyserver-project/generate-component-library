@@ -1,7 +1,7 @@
 export const AppTemplate = `import React, { ReactElement } from 'react'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { Nav } from './components/Nav'
-import * as stories from './stories'
+const stories = {} // Template, DO NOT CHANGE!
 
 const IndexPage = () => <div>Index</div>
 
