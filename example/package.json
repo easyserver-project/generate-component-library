@@ -4,9 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "react-compoent-library": ".."
   },
   "scripts": {
-    "start": "vite ./dist"
   }
 }

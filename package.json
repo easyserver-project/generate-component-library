@@ -5,12 +5,15 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^16.3.1",
+    "@types/sass": "^1.16.1",
     "copyfiles": "^2.4.1",
+    "prettier": "^2.3.2",
     "ts-node": "^10.1.0"
   },
   "scripts": {
     "start": "ts-node src/index.ts start ./example",
     "build-example": "ts-node src/index.ts build ./example",
+    "bundle-example": "ts-node src/index.ts bundle ./example",
     "gcl-init": "ts-node src/index.ts init ./example",
     "build": "tsc -p tsconfig-build.json && copyfiles package.json .npmrc build"
   },

@@ -1,4 +1,4 @@
-import {createServer} from "vite";
+import {createServer, build} from "vite";
 import path from "path";
 
 export const vite = async (rootDir: string)=>{
@@ -9,4 +9,8 @@ export const vite = async (rootDir: string)=>{
         }
     })
     await server.listen()
+}
+
+export const buildVite = async (rootDir: string)=>{
+    await build({root: path.join(rootDir, "dist"), build:{outDir: "../bundle"} })
 }
