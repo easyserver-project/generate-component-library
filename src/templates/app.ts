@@ -11,7 +11,7 @@ export const App = () => {
     <>
       <Nav>
         {[
-          <a href={'#'}>Index</a>,
+          <a href={'#'} key="index">Index</a>,
           ...storyKeys.map((key) => (
             <a key={key} href={\`#/$\{key\}\`}>
               {key}
