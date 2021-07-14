@@ -8,6 +8,8 @@ export const ButtonStory = () => {
       <h1>Button</h1>
       <Example>
         <Button text={'Button text'} />
+        <Button text={'Button text'} />
+        <Button text={'Button text'} />
       </Example>
     </>
   )

@@ -51,6 +51,7 @@ export const generateDist = (rootDir: string) => {
             ?.map((m: any) => m.match(/<Example.*?>(.*?)<\/Example>/s)[1])
         let code = content
         match?.forEach((m: any) => {
+            console.log(m)
             code = code.replace('<Example>', `<Example code={\`${m.replace(/\`/g, '\\`')}\`}>`)
         })
         fs.writeFileSync(path.join(distStoriesDir, story), code, 'utf8')

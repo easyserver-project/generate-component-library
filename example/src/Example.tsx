@@ -11,7 +11,7 @@ export const Example = ({
     <div>
       <div>{children}</div>
       <details title={'Show code'}>
-        <code>{code}</code>
+        <code style={{ whiteSpace: 'pre' }}>{code}</code>
       </details>
     </div>
   )
