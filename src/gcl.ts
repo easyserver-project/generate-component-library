@@ -2,13 +2,31 @@ import {MainTemplate} from './templates/main'
 import fs from 'fs'
 import path from 'path'
 import {createDirs, createMissingStories, getDirectories} from "./util";
+import chokidar from "chokidar";
+
+export const watchAndGenerate = (rootDir: string)=>{
+    const watcher = chokidar.watch(path.join(rootDir, "src"), {ignored: /^\./, persistent: true});
+
+    watcher
+        .on('add', function (path) {
+            generateDist(rootDir)
+        })
+        .on('change', function (path) {
+            generateDist(rootDir)
+        })
+        .on('unlink', function (path) {
+            generateDist(rootDir)
+        })
+        .on('error', function (error) {
+            generateDist(rootDir)
+        })
+    generateDist(rootDir)
+}
 
 export const generateDist = (rootDir: string) => {
     const {
         distDir,
-        distStyleDir,
         distStoriesDir,
-        distComponentsDir,
         componentsDir,
         storiesDir,
         styleDir,
