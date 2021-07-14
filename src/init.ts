@@ -26,12 +26,13 @@ export const init = (rootDir: string) => {
     createDir(styleDir)
     createDir(storiesDir)
 
+    if (!fs.existsSync(path.join(srcDir, "index.html")))
+        fs.writeFileSync(path.join(srcDir, "style", "index.scss"), "", 'utf8')
     copyFileIfNotExists('App.tsx', AppTemplate)
     copyFileIfNotExists('./components/Nav.tsx', NavTemplate)
     copyFileIfNotExists('Example.tsx', ExampleTemplate)
     copyFileIfNotExists('index.html', HtmlTemplate)
     copyFileIfNotExists('../tsconfig.json', TsConfigTemplate)
-    if (!fs.existsSync(path.join(srcDir, "index.html")))
-        fs.writeFileSync(path.join(srcDir, "style", "index.scss"), "", 'utf8')
+
     createMissingStories(rootDir)
 }
