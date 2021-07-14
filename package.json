@@ -1,5 +1,5 @@
 {
-  "name": "generate-component-library",
+  "name": "@easyserver-project/generate-component-library",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "ts-node src/index.ts ./example",
-    "build": "tsc -p tsconfig-build.json && copyfiles package.json build"
+    "build": "tsc -p tsconfig-build.json && copyfiles package.json .npmrc build"
   },
   "dependencies": {
     "@types/chokidar": "^2.1.3",
