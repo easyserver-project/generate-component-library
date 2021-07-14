@@ -6,7 +6,7 @@ export const ${component}Story = () => {
     <>
       <h1>${component}</h1>
       <Example>
-        ${component}
+        <div>${component}</div>
       </Example>
     </>
   )

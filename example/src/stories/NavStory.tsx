@@ -6,7 +6,7 @@ export const NavStory = () => {
     <>
       <h1>Nav</h1>
       <Example>
-        Nav
+        <div>Nav</div>
       </Example>
     </>
   )

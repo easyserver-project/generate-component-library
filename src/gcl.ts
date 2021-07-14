@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import {AppTemplate} from './templates/app'
 import {NavTemplate} from './templates/nav'
 import {ExampleTemplate} from './templates/example'
@@ -7,6 +6,7 @@ import {HtmlTemplate} from './templates/html'
 import fs from 'fs'
 import path from 'path'
 import {StoryTemplate} from "./templates/story";
+import {TsConfigTemplate} from "./templates/tsconfig";
 
 export const generateDist = (rootDir: string) => {
     const distDir = path.join(rootDir, 'dist')
@@ -41,6 +41,7 @@ export const generateDist = (rootDir: string) => {
     copyFileIfNotExists('./components/Nav.tsx', NavTemplate)
     copyFileIfNotExists('Example.tsx', ExampleTemplate)
     copyFileIfNotExists('index.html', HtmlTemplate)
+    copyFileIfNotExists('../tsconfig.json', TsConfigTemplate)
     if (!fs.existsSync(path.join(srcDir, "index.html")))
         fs.writeFileSync(path.join(srcDir, "style", "index.scss"), "", 'utf8')
 

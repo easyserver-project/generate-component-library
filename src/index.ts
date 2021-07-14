@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import {generateDist} from "./gcl";
 import {createServer} from 'vite'
 import path from 'path'
